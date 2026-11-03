@@ -13,31 +13,34 @@ student_grades = {
 }
 
 
-def add_grade():
-    baetaVidNemanda = input("Sláðu inn nafn nemanda: ")
-    baetaVidEinkunn = int(input("Sláðu inn einkunn nemanda: "))
-    student_grades[baetaVidNemanda] = baetaVidEinkunn
-
-
-def update_grade():
-    uppfaeraNemanda = input("Sláðu inn nafn nemanda sem þú vilt uppfæra: ")
-    if uppfaeraNemanda in student_grades:
-        uppfaeraEinkunn = int(input("Sláðu inn nýja einkunn: "))
-        student_grades[uppfaeraNemanda] = uppfaeraEinkunn
+def add_grade(nem, eink):
+    if nem in student_grades:
+        print("Nemandi nú þegar á skrá, reyndu aftur")
     else:
-        print(uppfaeraNemanda, "er ekki skráður. Endilega skráðu nemandann með aðgerð 1")
+        student_grades[nem] = eink
+        return student_grades
 
 
-def get_grade():
-    saekjaNemanda = input("Sláðu inn nafn nemanda sem þú vilt sækja einkunn fyrir: ")
-    if saekjaNemanda in student_grades:
-        print(saekjaNemanda, "er með einkunnina:", student_grades[saekjaNemanda])
+def update_grade(nem, eink):
+    if nem in student_grades:
+        student_grades[nem] = eink
     else:
-        print(saekjaNemanda, "er ekki skráður. Endilega skráðu nemandann með aðgerð 1")
+        print(nem, "er ekki skráður. Endilega skráðu nemandann með aðgerð 1")
+
+
+def get_grade(nem):
+    if nem in student_grades:
+        print(nem, "er með einkunnina:", student_grades[nem])
+    else:
+        print(nem, "er ekki skráður. Endilega skráðu nemandann með aðgerð 1")
 
 def calculate_average_grade():
     summa = 0
-    for nafn in student_grades:
+    for i,nafn in enumerate(student_grades, start=1):
+        summa += student_grades[nafn]
+    return(summa / i)
+
+
 
 
 def print_dict():
@@ -59,13 +62,22 @@ def main():
         adgerd = int(input("Sláðu inn númer aðgerðar: "))
 
         if adgerd == 1:
-            add_grade()
+            baetaVidNemanda = input("Sláðu inn nafn nemanda: ")
+            baetaVidEinkunn = int(input("Sláðu inn einkunn nemanda: "))
+            add_grade(baetaVidNemanda, baetaVidEinkunn)
+
         elif adgerd == 2:
-            update_grade()
+            uppfaeraNemanda = input("Sláðu inn nafn nemanda sem þú vilt uppfæra: ")
+            uppfaeraEinkunn = int(input("Sláðu inn nýja einkunn: "))
+            update_grade(uppfaeraNemanda, uppfaeraEinkunn)
+
         elif adgerd == 3:
-            get_grade()
-        #elif adgerd == 4:
-        #    calculate_average_grade()
+            saekjaNemanda = input("Sláðu inn nafn nemanda sem þú vilt sækja einkunn fyrir: ")
+            get_grade(saekjaNemanda)
+
+        elif adgerd == 4:
+            average = calculate_average_grade(student_grades)
+            print(f"Meðaleinkunn allra nemanda: {average:.2f}")
         elif adgerd == 5:
             print_dict()
 
