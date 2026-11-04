@@ -13,17 +13,18 @@ for i in range (fjoldiGesta):
     gestir[nafnGests] = i
 print(gestir)
 
-hvadaGestur = input("Hvaða gest áttu von á?: ")
+hvadaGestur = input("Hvaða gest áttu von á? q til að hætta: ")
+while hvadaGestur != "q":
 
+    if hvadaGestur in gestir:
+        print(hvadaGestur, "mætir")
+    else:
 
-if hvadaGestur in gestir:
-    print(hvadaGestur, "mætir")
-else:
-
-    for nafn in gestir:
-        splitNafn = nafn.split()
-        if hvadaGestur == splitNafn[0] and len(splitNafn) == 2:
-            print("Nei en,", splitNafn[0], splitNafn[1], "mætir")
-            break
-        else:
-            print("Nei  ")
+        for nafn in gestir:
+            splitNafn = nafn.split()
+            if hvadaGestur == splitNafn[0] and len(splitNafn) == 2:
+                print("Nei en,", splitNafn[0], splitNafn[1], "mætir")
+                break
+            else:
+                print("Nei")
+    hvadaGestur = input("Hvaða gest áttu von á? q til að hætta: ")
