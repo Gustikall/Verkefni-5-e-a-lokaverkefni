@@ -1,23 +1,29 @@
 # Höfundur: Ágúst Már Þórðarson
-# Dagsetning: 03/11/26
-# Verkefni: Afmæli uppfletti tala
+# Dagsetning: 04/11/26
+# Verkefni: Afmæli uppflettitala
 # Athugasemdir:
 # Gast þú leyst þetta verkefni án hjálpar? Já
 
 gestir = {}
 
-fjoldiGesta = int(input("Sláðu inn fjölda gesta sem ætla mæta í afmælið: "))
- 
-for i,j in enumerate(range(fjoldiGesta)):
-    #vantar inn að splita fornafni frá eftirnafni
-    nofnGesta = input("Sláðu inn nafn gests: ")
-    gestir[nofnGesta] = i
+fjoldiGesta = int(input("Sláðu inn fjölda gesta: "))
 
-hvadaGestur = input("Hvaða gest viltu athuga hvort mæti (q til að hætta): ")
-while hvadaGestur != "q":
-    if hvadaGestur in gestir:
-        print("Já", hvadaGestur, "mætir")
-        hvadaGestur = input("Hvaða gest viltu athuga hvort mæti (q til að hætta): ")
-    else:
-        print("Nei")
-        hvadaGestur = input("Hvaða gest viltu athuga hvort mæti (q til að hætta): ")
+for i in range (fjoldiGesta):
+    nafnGests = input("Sláðu inn nafn gests: ")
+    gestir[nafnGests] = i
+print(gestir)
+
+hvadaGestur = input("Hvaða gest áttu von á?: ")
+
+
+if hvadaGestur in gestir:
+    print(hvadaGestur, "mætir")
+else:
+
+    for nafn in gestir:
+        splitNafn = nafn.split()
+        if hvadaGestur == splitNafn[0] and len(splitNafn) == 2:
+            print("Nei en,", splitNafn[0], splitNafn[1], "mætir")
+            break
+        else:
+            print("Nei  ")
