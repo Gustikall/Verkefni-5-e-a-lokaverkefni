@@ -1,5 +1,5 @@
 # Höfundur: Ágúst Már Þórðarson
-# Dagsetning: 04/11/26
+# Dagsetning: 05/11/26
 # Verkefni: Afmæli - Value er listi
 # Athugasemdir:
 # Gast þú leyst þetta verkefni án hjálpar? Já
@@ -10,12 +10,22 @@ fjoldiGesta = int(input("Sláðu inn fjölda gesta: "))
 
 for i in range (fjoldiGesta):
     nafnGests = input("Sláðu inn nafn gests: ")
-    gestir[i] = [nafnGests]
-print(gestir)
+    x = nafnGests.split()
+    gestir[i] = x
 
 
-hvadaGestur = input("Hvaða gest áttu von á? q til að hætta: ")
+hvadaGestur = "x"
+while hvadaGestur != "q":
+    hvadaGestur = input("Hvaða gest áttu von á? q til að hætta: ")
 
-for nafn in gestir:
-    x = gestir[nafn]
-    print(x.split())
+    gestaListi = []
+
+    for nafn in gestir:
+        if hvadaGestur == gestir[nafn][0]:
+            gestaListi.append(gestir[nafn])
+        
+    for i in gestaListi:
+        x = i[0] + " " + i[1]
+        print(x, "mætir")
+
+
