@@ -16,16 +16,21 @@ for i in range (fjoldiGesta):
 
 hvadaGestur = "x"
 while hvadaGestur != "q":
+    maeting = ""
     hvadaGestur = input("Hvaða gest áttu von á? q til að hætta: ")
 
     gestaListi = []
 
     for nafn in gestir:
-        if hvadaGestur == gestir[nafn][0]:
+        if hvadaGestur == gestir[nafn][0] and len(gestir[nafn]) == 2:
             gestaListi.append(gestir[nafn])
         
     for i in gestaListi:
         x = i[0] + " " + i[1]
-        print(x, "mætir")
+        maeting += x + ", "
+    if len(gestaListi) > 1:
+        print("Gestir með fornafnið", hvadaGestur,":", maeting)
+    else:
+        print("Enginn gestur að nafni",hvadaGestur)
 
 
