@@ -27,5 +27,6 @@ while hvadaGestur != "q":
     for i in gestaListi:
         x = i[0] + " " + i[1]
         print(x, "mætir")
-
-
+        print(i)
+        if hvadaGestur not in i[0]:
+            print(hvadaGestur,"mætir ekki")
